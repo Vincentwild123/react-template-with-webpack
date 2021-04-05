@@ -5,8 +5,27 @@
 
 
 .container {
-    margin: 0 auto;
-    width: 80vw;
     height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 
+.nav {
+    list-style-type: none;
+    flex: 0 0 200px;
+    overflow: hidden;
+}
+
+.navItem {
+    margin: 20px 0;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.route {
+    flex: 1;
+}

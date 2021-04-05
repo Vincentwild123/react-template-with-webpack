@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 const store = createStore(reducer, applyMiddleware(...middleware))
 
 ReactDOM.render((
-    <Provider store={store} >
-        < App />
+    <Provider store={store}>
+        <App></App>
     </Provider>)
     , document.getElementById("app"));

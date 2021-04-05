@@ -16,7 +16,7 @@ module.exports = {
   4.cheap-module-eval-source-map: 有安全隐患,行映射
   */
   devServer: {
-    contentBase: "./dist",
+    contentBase: "/dist",
     historyApiFallback: true,
     inline: true,
     hot: true,
