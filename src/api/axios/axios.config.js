@@ -1,14 +1,14 @@
 const config = {
-    // `url` 是用于请求的服务器 URL
+    // the url you request 
     url: '/api/test',
-    // `method` 是创建请求时使用的方法
+    // the mothods of this request
     method: 'get', // default
-    // `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。
-    // 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL
+    // the base url will unshift into the url you write in the parmas 
     baseURL: 'http://localhost:3000/',
     timeout: 5000,
-    // `withCredentials` 表示跨域请求时是否需要使用凭证
+    // when cross origin,whether the request will cookie 
     withCredentials: false, // default
-    // `responseType` 表示服务器响应的数据类型，可以是 'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
+    // type of the reponse data
+    reponseType: 'json'
 }
 export default config;

@@ -1,27 +1,47 @@
 const webpack = require('webpack')
+//generate the index.html
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+
+const path = require('path')
 module.exports = {
   mode: "development",
-  entry: __dirname + "/src/index.jsx", //项目入口文件
+  entry: __dirname + "/src/index.jsx", //enter
   output: {
-    path: __dirname + "/dist", //项目出口文件路径
-    filename: "bundle.js", //出口文件名
+    path: __dirname + "/dist", //res output path
+    filename: "bundle.js", // res name
   },
-  devtool: "eval-source-map", //编译文件和源文件的映射
-  //有四种值可以设置
+  devtool: "eval-source-map", // how the complier map to sourse 
+  //four kinds of value
   /*
-  1.source-map: 行列映射
-  2.cheap-module-source-map: 行映射
-  3.eval: eval打包,开发阶段使用,有安全隐患
-  4.cheap-module-eval-source-map: 有安全隐患,行映射
+  1.source-map: Row column mapping
+  2.cheap-module-source-map: row mapping
+  3.eval-source-map: eval pack with hidden danger
+  4.cheap-module-eval-source-map: row mapping with hidden danger
   */
   devServer: {
     contentBase: "/dist",
+    port: 8080,
+    progress: true,
     historyApiFallback: true,
+    //Open gzip compression for each static file
+    compress: true,
+    //Avoid log redundancy
+    clientLogLevel: 'silent',
     inline: true,
+    //HMR
     hot: true,
+    //http/2
+    https: true,
+    //Set the presentation of compilation errors
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
   },
   module: {
+    noParse: (content) => /jquery|lodash/.test(content),
     rules: [{
         test: /(\.jsx|\.js)$/,
         use: {
@@ -36,12 +56,35 @@ module.exports = {
           'css-loader?modules&importLoaders=1&sourceMap'
         ]
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '/dist/' + 'img/[name].[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '/dist/' + 'media/[name].[hash:7].[ext]'
+        }
+      },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: true,
+      }),
     ],
   },
   plugins: [
     new webpack.BannerPlugin("版权归vincent所有,翻版必究"),
     new HtmlWebpackPlugin({
-      template: __dirname + '/src/index.tmpl.html'
-    })
+      template: "./src/index.tmpl.html"
+    }),
   ]
 };

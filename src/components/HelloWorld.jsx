@@ -25,7 +25,7 @@ export default function HelloWorld() {
         <div className="container">
             <div className={style.h1}>{_msg}</div>
             <input className={style.input} type="text" ref={ref} />
-            <button className={style.btn} onClick={() => setMsg()}>改变</button>
+            <button className={style.btn} onClick={() => setMsg()}>set message</button>
         </div>
     )
 }

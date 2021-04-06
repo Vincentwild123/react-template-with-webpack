@@ -1,1 +1,1 @@
-//应用全局配置
+// config of app

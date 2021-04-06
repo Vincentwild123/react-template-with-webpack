@@ -11,21 +11,24 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-}
-
-.nav {
-    list-style-type: none;
-    flex: 0 0 200px;
     overflow: hidden;
 }
-
 .navItem {
-    margin: 20px 0;
     font-size: 30px;
     font-weight: 500;
+    list-style: none;
+    text-decoration: none;
+}
+
+.navbtn{
+    margin: 0 20px;
 }
 
 .route {
     flex: 1;
+}
+
+.logo {
+    max-width: 300px;
+    max-height: 300px;
 }

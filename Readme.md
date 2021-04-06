@@ -6,3 +6,4 @@
 4. npm run server
 
 ## use with vin-cli is better
+### a template for create your react project
