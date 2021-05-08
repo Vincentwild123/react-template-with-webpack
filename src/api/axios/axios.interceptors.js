@@ -1,26 +1,56 @@
-import instance from './instance'
-//define interceptor
+import axios from "axios";
+import config from "./axios.config.js";
+// create an instance with the config
+const instance = axios.create(config); //define interceptor
 //add a request interceptor
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use(
+  function (config) {
     //do something before send request
-    let date = new Date().toLocaleTimeString();
-    console.log("%c%s", "color:black;font-size:12px;font-weight:800", "Request Send " + "(" + date + ")")
+    console.log(
+      "%c-------------------- %caxios %c---------------------",
+      "color:white",
+      "color:#ADFF2F;font-size:15px;font-weight:800",
+      "color:white"
+    );
+    console.log(
+      "%c📧: %cREQUEST SEND %c(" + new Date().toLocaleTimeString() + ")",
+      "color: #00CED1; font-weight:bold;font-size:15px",
+      "color: yellow",
+      "color: white"
+    );
+    console.log(
+      "👇 %cThe following is the configuration of this request",
+      "color:yellow"
+    );
     console.dir(config);
     return config;
-}, function (error) {
-    // do something when error
-    return Promise.reject(error);
-});
+  },
+  (error) => Promise.reject(error)
+);
 // add a response interceptor
-instance.interceptors.response.use(function (response) {
+instance.interceptors.response.use(
+  function (response) {
     // do something after receive response
-    let date = new Date().toLocaleTimeString();
-    console.log("%c%s", "color:black;font-size:12px;font-weight:800", "Response Receive " + "(" + date + ")")
-    console.dir(response)
+    console.log(
+      "%c📩: %cRESPONSE RECEIVED %c(" + new Date().toLocaleTimeString() + ")",
+      "color: #00CED1; font-weight: bold;font-size:15px",
+      "color: yellow",
+      "color: white"
+    );
+    console.log(
+      "👇 %cThe following is the result returned this time",
+      "color:yellow"
+    );
+    console.dir(response); //     console.log(response);
+    console.log(
+      "%c-------------------- %caxios %c---------------------",
+      "color:white",
+      "color:#ADFF2F;font-size:15px;font-weight:800",
+      "color:white"
+    );
     return response.data;
-}, function (error) {
-    // do something when error
-     return Promise.reject(error);
-});
+  },
+  (error) => Promise.reject(error)
+);
 
 export default instance;

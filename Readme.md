@@ -1,9 +1,29 @@
-# 使用
+### 📄Description
 
-1. git clone
-2. cd dirname
-3. yarn
-4. npm run server
+**A template to create React App , integrate `Webpack`、`React-router`、`React-redux`、`React Hooks`、`Axios`**
 
-## use with vin-cli is better
-### a template for create your react project
+### 🔑Usage
+
+**1. clone the repo**
+
+```shell
+$ git clone
+```
+
+**2. get into the folder**
+
+```shell
+$ cd folder-name
+```
+
+**3. install the dependences**
+
+```shell
+$ yarn
+```
+
+**4. run**
+
+```shell
+$ npm start
+```

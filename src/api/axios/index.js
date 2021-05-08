@@ -1,2 +1,2 @@
-import axios from './axios.interceptors'
-export default axios;
+import instance from "./axios.interceptors";
+export default instance;

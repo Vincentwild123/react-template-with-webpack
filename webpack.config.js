@@ -1,18 +1,15 @@
-const webpack = require('webpack')
-//generate the index.html
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-
-const path = require('path')
+const path = require("path");
 module.exports = {
   mode: "development",
-  entry: __dirname + "/src/index.jsx", //enter
+  entry: __dirname + "/src/index.js", //enter
   output: {
     path: __dirname + "/dist", //res output path
     filename: "bundle.js", // res name
   },
-  devtool: "eval-source-map", // how the complier map to sourse 
+  devtool: "eval-source-map", // how the complier map to sourse
   //four kinds of value
   /*
   1.source-map: Row column mapping
@@ -23,17 +20,14 @@ module.exports = {
   devServer: {
     contentBase: "/dist",
     port: 8080,
-    progress: true,
     historyApiFallback: true,
     //Open gzip compression for each static file
     compress: true,
     //Avoid log redundancy
-    clientLogLevel: 'silent',
+    clientLogLevel: "silent",
     inline: true,
     //HMR
     hot: true,
-    //http/2
-    https: true,
     //Set the presentation of compilation errors
     overlay: {
       warnings: true,
@@ -42,7 +36,8 @@ module.exports = {
   },
   module: {
     noParse: (content) => /jquery|lodash/.test(content),
-    rules: [{
+    rules: [
+      {
         test: /(\.jsx|\.js)$/,
         use: {
           loader: "babel-loader",
@@ -52,25 +47,25 @@ module.exports = {
       {
         test: /\.css$/,
         loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1&sourceMap'
-        ]
+          "style-loader",
+          "css-loader?modules&importLoaders=1&sourceMap",
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: '/dist/' + 'img/[name].[hash:7].[ext]'
-        }
+          name: "/dist/" + "img/[name].[hash:7].[ext]",
+        },
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: '/dist/' + 'media/[name].[hash:7].[ext]'
-        }
+          name: "/dist/" + "media/[name].[hash:7].[ext]",
+        },
       },
     ],
   },
@@ -82,9 +77,8 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.BannerPlugin("版权归vincent所有,翻版必究"),
     new HtmlWebpackPlugin({
-      template: "./src/index.tmpl.html"
+      template: "./src/index.tmpl.html",
     }),
-  ]
+  ],
 };
